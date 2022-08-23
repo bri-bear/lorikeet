@@ -1,6 +1,6 @@
 
 
-#define MODKEY XCB_MOD_MASK_2
+#define MODKEY XCB_MOD_MASK_1
 
 typedef struct
 {
