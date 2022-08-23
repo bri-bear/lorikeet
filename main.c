@@ -41,6 +41,7 @@ void LorikeetLoop()
         switch(ev->response_type) 
         {
          case (XCB_BUTTON_PRESS): printf("button-press"); 
+         case (XCB_KEY_PRESS): printf("key-press");
         }
     }
 }
