@@ -11,11 +11,14 @@ xcb_window_t root;
 xcb_connection_t *dpy; 
 int defaultScreen;
 
-void LorikeetTestWindow() {
+void LorikeetTestWindow() 
+{
+
 
 }
 
-void LorikeetInit() {
+void LorikeetInit() 
+{
 
     root = scr->root;
 
@@ -30,9 +33,18 @@ void LorikeetInit() {
 
 }
 
-int main() {
-    LorikeetInit();
-    for(;;) { // Main loop
+void LorikeetLoop() 
+{
+    for(;;) 
+    { // Main loop
         ev = xcb_wait_for_event(dpy);
+        case XCB_BUTTON_PRESS: printf("button-press"); 
+
     }
+}
+
+int main() 
+{
+    LorikeetInit();
+    LorikeetLoop();
 }
