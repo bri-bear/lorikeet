@@ -1,0 +1,5 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/virtcat/lorikeet'
+cc main.c -lxcb -o lorikeet
+make: Leaving directory '/home/virtcat/lorikeet'
+ 
