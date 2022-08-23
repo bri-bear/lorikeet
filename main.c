@@ -4,20 +4,20 @@
 #include <xcb/xcb.h>
 #include <xcb/xproto.h>
 
-xcb_generic_event_t *ev;
+xcb_generic_event_t *mainEvent;
 xcb_screen_t *scr;
 xcb_window_t root;
 
 xcb_connection_t *dpy; 
 int defaultScreen;
 
-void LorikeetTestWindow() 
+static void LorikeetTestWindow() 
 {
 
 
 }
 
-void LorikeetInit() 
+static void LorikeetInit() 
 {
 
     root = scr->root;
@@ -33,15 +33,26 @@ void LorikeetInit()
 
 }
 
-void LorikeetLoop() 
+static void LorikeetFocus(xcb_generic_event_t *ev) 
+{
+    xcb_enter_notify_event_t *e = ( xcb_enter_notify_event_t *) ev;
+    xcb_drawable_t client = e->event;
+
+    if ((client) && (client != scr->root)) {
+        xcb_set_input_focus(dpy, XCB_INPUT_FOCUS_POINTER_ROOT, client, XCB_CURRENT_TIME);
+    }
+}
+
+static void LorikeetLoop() 
 {
     for(;;) 
     { // Main loop
-        ev = xcb_wait_for_event(dpy);
-        switch(ev->response_type) 
+        mainEvent = xcb_wait_for_event(dpy);
+        switch(mainEvent->response_type) 
         {
          case (XCB_BUTTON_PRESS): printf("button-press"); 
          case (XCB_KEY_PRESS): printf("key-press");
+         case (XCB_ENTER_NOTIFY): LorikeetFocus(mainEvent); 
         }
     }
 }

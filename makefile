@@ -9,3 +9,9 @@ build-test:
 	$(CC) main.c -lxcb -o lorikeet
 	@Xephyr :1
 	@DISPLAY=:1 ./lorikeet
+
+build-test-xterm:
+	$(CC) main.c -lxcb -o lorikeet
+	@Xephyr :1
+	@DISPLAY=:1 ./lorikeet
+	@DISPLAY=:1 xterm
