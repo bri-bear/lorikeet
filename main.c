@@ -16,6 +16,12 @@ void LorikeetTestWindow() {
 }
 
 void LorikeetInit() {
+
+    root = scr->root;
+
+    xcb_grab_key(dpy, 1, root, MODKEY, XCB_NO_SYMBOL,
+    XCB_GRAB_MODE_ASYNC, XCB_GRAB_MODE_ASYNC);
+
     dpy = xcb_connect(NULL, NULL);
     if (xcb_connection_has_error(dpy)) {
         printf("Error! Could not open display.");
@@ -25,6 +31,7 @@ void LorikeetInit() {
 }
 
 int main() {
+    LorikeetInit();
     for(;;) { // Main loop
         ev = xcb_wait_for_event(dpy);
     }
