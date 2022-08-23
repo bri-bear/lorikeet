@@ -38,8 +38,10 @@ void LorikeetLoop()
     for(;;) 
     { // Main loop
         ev = xcb_wait_for_event(dpy);
-        case XCB_BUTTON_PRESS: printf("button-press"); 
-
+        switch(ev->response_type) 
+        {
+         case (XCB_BUTTON_PRESS): printf("button-press"); 
+        }
     }
 }
 
