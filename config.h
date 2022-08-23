@@ -1,6 +1,16 @@
-#include <xcb/xcb.h>
+
+
+#define MODKEY XCB_MOD_MASK_2
 
 typedef struct
 {
     void (*func);
-} Keys;
+} Binds;
+
+
+static Binds keybinds[] = 
+{
+
+};
+ 
+
